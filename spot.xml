@@ -6,6 +6,6 @@
       <email>syutkin@gmail.com</email>
       <name>syutkin</name>
     </owner>
-    <source type="git">https://notabug.org/Syutkin/portage-overlay.git</source>
+    <source type="git">https://github.com/Syutkin/gentoo-overlay.git</source>
   </repo>
 </repositories>
