@@ -20,7 +20,7 @@ and put the following text in the file:
 
 location = /usr/local/portage/spot
 sync-type = git
-sync-uri = https://notabug.org/Syutkin/portage-overlay.git
+sync-uri = https://github.com/Syutkin/gentoo-overlay.git
 priority = 50
 auto-sync = yes
 ```
