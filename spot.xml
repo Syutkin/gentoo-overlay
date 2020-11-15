@@ -1,0 +1,11 @@
+<repositories encoding="unicode" version="1.1">
+  <repo priority="50" quality="experimental">
+    <name>spot</name>
+    <description>Some ebuilds for Gentoo</description>
+    <owner>
+      <email>syutkin@gmail.com</email>
+      <name>syutkin</name>
+    </owner>
+    <source type="git">https://notabug.org/Syutkin/portage-overlay.git</source>
+  </repo>
+</repositories>
