@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<upstream>
+		<bugs-to>https://github.com/streamlink/streamlink/issues</bugs-to>
+		<remote-id type="github">streamlink/streamlink</remote-id>
+	</upstream>
+	<use>
+		<flag name="ffmpeg">Required to play streams that are made up of separate audio and video streams, eg. YouTube 1080p+</flag>
+		<flag name="rtmp">Required to play RTMP streams</flag>
+	</use>
+</pkgmetadata>

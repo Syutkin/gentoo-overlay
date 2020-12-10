@@ -25,7 +25,7 @@ fi
 
 LICENSE="BSD-2 Apache-2.0"
 SLOT="0"
-IUSE="doc test"
+IUSE="+ffmpeg +rtmp doc test"
 RESTRICT="!test? ( test )"
 
 # >=urllib3-1.23 only needed for python2, but requests pulls some version anyways, so we might as well guarantee at least that ver for py3 too
@@ -40,8 +40,8 @@ DEPEND="
 	')
 "
 RDEPEND="${DEPEND}
-	media-video/rtmpdump
-	virtual/ffmpeg
+	rtmp? ( media-video/rtmpdump )
+	ffmpeg? ( media-video/ffmpeg  ) 
 "
 BDEPEND="
 	$(python_gen_cond_dep '

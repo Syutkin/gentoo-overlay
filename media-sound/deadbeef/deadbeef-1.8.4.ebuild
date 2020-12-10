@@ -41,7 +41,7 @@ RDEPEND="
 	shorten? ( media-sound/shorten )
 	alac? ( media-sound/alac_decoder )
 	alsa? ( media-libs/alsa-lib )
-	ffmpeg? ( virtual/ffmpeg )
+	ffmpeg? ( media-video/ffmpeg  )
 	mad? ( media-libs/libmad )
 	vorbis? ( media-libs/libvorbis )
 	flac? ( media-libs/flac )
