@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<upstream>
+		<changelog>https://raw.githubusercontent.com/streamlink/streamlink-twitch-gui/master/CHANGELOG.md</changelog>
+		<doc>https://github.com/streamlink/streamlink-twitch-gui/wiki</doc>
+		<bugs-to>https://github.com/streamlink/streamlink-twitch-gui/issues</bugs-to>
+		<remote-id type="github">anrieff/libcpuid</remote-id>
+	</upstream>
+</pkgmetadata>

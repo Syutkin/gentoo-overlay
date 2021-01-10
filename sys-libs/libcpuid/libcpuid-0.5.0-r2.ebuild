@@ -11,9 +11,9 @@ DESCRIPTION="A small C library for x86 (and x86_64) CPU detection and feature ex
 HOMEPAGE="http://libcpuid.sourceforge.net/"
 SRC_URI="https://github.com/anrieff/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="BSD-2"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="test"
+SLOT="0/15"
+KEYWORDS="~amd64"
+IUSE="static-libs test"
 RESTRICT="primaryuri !test? ( test )"
 
 DEPEND="test? ( ${PYTHON_DEPS} )"
@@ -28,6 +28,16 @@ src_prepare() {
 	eautoreconf
 }
 
+src_configure() {
+	econf $(use_enable static-libs static)
+}
+
 src_test() {
 	emake test
+}
+
+src_install() {
+	default
+
+	find "${ED}" -name "*.la" -delete || die
 }

@@ -5,24 +5,36 @@ EAPI=7
 
 MY_PN="CPU-X"
 
-inherit cmake-utils xdg gnome2-utils
+inherit cmake git-r3 xdg
 
 DESCRIPTION="A Free software that gathers information on CPU, motherboard and more"
 HOMEPAGE="https://x0rg.github.io/CPU-X/"
-SRC_URI="https://github.com/X0rg/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+EGIT_REPO_URI="https://github.com/X0rg/${MY_PN}.git"
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="-* ~amd64"
-IUSE="+bandwidth +dmidecode force-libstatgrab +gtk +libcpuid +libpci +ncurses +nls"
-RESTRICT="primaryuri"
+IUSE="+bandwidth +dmidecode force-libstatgrab +gtk +libcpuid +libpci +ncurses +nls test"
+RESTRICT="!test? ( test )"
 
-DEPEND="
+COMMON_DEPEND="
+	dev-libs/glib:2
+	x11-libs/cairo
+	x11-libs/gdk-pixbuf:2
+	x11-libs/pango
 	force-libstatgrab? ( sys-libs/libstatgrab )
 	!force-libstatgrab? ( sys-process/procps:= )
 	gtk? ( >=x11-libs/gtk+-3.12:3 )
-	libcpuid? ( >=sys-libs/libcpuid-0.3.0 )
+	libcpuid? ( >=sys-libs/libcpuid-0.3.0:= )
 	libpci? ( sys-apps/pciutils )
-	ncurses? ( sys-libs/ncurses:= )
+	ncurses? ( sys-libs/ncurses:=[tinfo,unicode] )
+"
+
+DEPEND="
+	test? (
+		sys-apps/mawk
+		sys-apps/nawk
+	)
+
+	${COMMON_DEPEND}
 "
 
 BDEPEND="
@@ -30,12 +42,10 @@ BDEPEND="
 	nls? ( sys-devel/gettext )
 "
 
-RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${MY_PN}-${PV}"
+RDEPEND="${COMMON_DEPEND}"
 
 src_prepare() {
-	cmake-utils_src_prepare
+	cmake_src_prepare
 }
 
 src_configure() {
@@ -52,7 +62,7 @@ src_configure() {
 		-DGSETTINGS_COMPILE=OFF
 	)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 pkg_preinst() {

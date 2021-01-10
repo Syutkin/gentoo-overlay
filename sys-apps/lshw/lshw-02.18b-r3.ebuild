@@ -1,7 +1,7 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI=7
 
 PLOCALES='fr'
 
@@ -72,9 +72,9 @@ src_install() {
 }
 
 pkg_postinst() {
-    xdg_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
-    xdg_icon_cache_update
+	xdg_icon_cache_update
 }

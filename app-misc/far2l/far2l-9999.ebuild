@@ -29,7 +29,6 @@ SLOT="0"
 IUSE="+ssl libressl sftp samba nfs webdav +archive +wxwidgets python"
 
 RDEPEND="sys-apps/gawk
-	sys-devel/m4
 	dev-libs/xerces-c
 	dev-libs/spdlog
 	app-i18n/uchardet
@@ -48,6 +47,8 @@ RDEPEND="sys-apps/gawk
 	python? ( dev-python/virtualenv )"
 
 DEPEND="${RDEPEND}"
+
+BDEPEND="sys-devel/m4"
 
 DOCS=( README.md )
 

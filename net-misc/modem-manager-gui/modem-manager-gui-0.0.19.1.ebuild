@@ -1,13 +1,12 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=6
 
 inherit xdg-utils
 
 DESCRIPTION="GUI for Modem Manager daemon."
-HOMEPAGE="http://linuxonly.ru/"
+HOMEPAGE="https://linuxonly.ru/page/modem-manager-gui"
 SRC_URI="http://download.tuxfamily.org/gsf/source/${P}.tar.gz"
 
 LICENSE="GPL-3"
@@ -25,7 +24,6 @@ DEPEND=">=x11-libs/gtk+-3.4.0
 	app-text/gtkspell:3
 	x11-libs/libnotify"
 RDEPEND="${DEPEND}"
-
 
 pkg_postinst() {
 	xdg_icon_cache_update
