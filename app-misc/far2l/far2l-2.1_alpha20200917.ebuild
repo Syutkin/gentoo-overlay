@@ -4,9 +4,8 @@
 EAPI=6
 
 WX_GTK_VER="3.0-gtk3"
-CMAKE_MIN_VERSION=3.2.2
 
-inherit eutils cmake-utils xdg-utils ninja-utils wxwidgets
+inherit eutils cmake-utils xdg-utils wxwidgets
 
 DESCRIPTION="Linux port of FAR Manager v2"
 HOMEPAGE="https://github.com/elfmz/far2l"
@@ -28,6 +27,9 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE="+ssl libressl sftp samba nfs webdav +archive +wxwidgets python"
 
+BDEPEND=">=dev-util/cmake-3.2.2
+        sys-devel/m4"
+
 RDEPEND="sys-apps/gawk
 	dev-libs/xerces-c
 	dev-libs/spdlog
@@ -47,8 +49,6 @@ RDEPEND="sys-apps/gawk
 	python? ( dev-python/virtualenv )"
 
 DEPEND="${RDEPEND}"
-
-BDEPEND="sys-devel/m4"
 
 DOCS=( README.md )
 
