@@ -16,7 +16,7 @@ LICENSE="GPL-2"
 SLOT="5"
 RESTRICT="mirror"
 
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE="-bindist"
 
 DEPEND="
