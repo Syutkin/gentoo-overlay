@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -6,7 +6,7 @@ EAPI=6
 WX_GTK_VER="3.0-gtk3"
 CMAKE_MIN_VERSION=3.2.2
 
-inherit eutils cmake-utils xdg-utils wxwidgets
+inherit eutils cmake-utils xdg-utils ninja-utils wxwidgets
 
 DESCRIPTION="Linux port of FAR Manager v2"
 HOMEPAGE="https://github.com/elfmz/far2l"
@@ -17,8 +17,8 @@ if [[ "${PV}" == "9999" ]] ; then
 	EGIT_REPO_URI="https://github.com/elfmz/far2l"
 	EGIT_BRANCH="master"
 else
-        MY_PV="${PV:4:5}-${PV:15:2}sep${PV:11:2}"
-        MY_P="${PN}-${MY_PV}"
+	MY_PV="${PV:4:5}-${PV:15:2}sep${PV:11:2}"
+	MY_P="${PN}-${MY_PV}"
 	S="${WORKDIR}/${MY_P}"
 	SRC_URI="https://github.com/elfmz/far2l/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
@@ -45,47 +45,47 @@ RDEPEND="sys-apps/gawk
 	archive? (
 		dev-libs/libpcre2
 		app-arch/libarchive )
-        python? ( dev-python/virtualenv )"
+	python? ( dev-python/virtualenv )"
 
 DEPEND="${RDEPEND}"
 
 DOCS=( README.md )
 
 src_prepare() {
-    sed -e "s:execute_process(COMMAND ln -sf \../../bin/far2l \${CMAKE_INSTALL_PREFIX}/lib/far2l/far2l_askpass)::" -i "${S}"/CMakeLists.txt
-    sed -e "s:execute_process(COMMAND ln -sf \../../bin/far2l \${CMAKE_INSTALL_PREFIX}/lib/far2l/far2l_sudoapp)::" -i "${S}"/CMakeLists.txt
-    sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/objinfo/plug/objinfo.far-plug-mb)::" -i "${S}"/CMakeLists.txt
-    sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/farftp/plug/farftp.far-plug-mb && echo Removed existing farftp plugin)::" -i "${S}"/CMakeLists.txt
-    sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/python/plug/python.far-plug-wide && echo Removed existing python plugin)::" -i "${S}"/CMakeLists.txt
-    cmake-utils_src_prepare
-    default
+	sed -e "s:execute_process(COMMAND ln -sf \../../bin/far2l \${CMAKE_INSTALL_PREFIX}/lib/far2l/far2l_askpass)::" -i "${S}"/CMakeLists.txt
+	sed -e "s:execute_process(COMMAND ln -sf \../../bin/far2l \${CMAKE_INSTALL_PREFIX}/lib/far2l/far2l_sudoapp)::" -i "${S}"/CMakeLists.txt
+	sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/objinfo/plug/objinfo.far-plug-mb)::" -i "${S}"/CMakeLists.txt
+	sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/farftp/plug/farftp.far-plug-mb && echo Removed existing farftp plugin)::" -i "${S}"/CMakeLists.txt
+	sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/python/plug/python.far-plug-wide && echo Removed existing python plugin)::" -i "${S}"/CMakeLists.txt
+	cmake-utils_src_prepare
+	default
 }
 
 pkg_setup() {
-    if use wxwidgets; then
-        setup-wxwidgets
-    fi
+	if use wxwidgets; then
+		setup-wxwidgets
+	fi
 }
 
 src_configure() {
-    local mycmakeargs=(
-            -DCMAKE_INSTALL_PREFIX="${EPREFIX}/usr"
-            -DCMAKE_BUILD_TYPE=Release
-    )
+	local mycmakeargs=(
+		-DCMAKE_INSTALL_PREFIX="${EPREFIX}/usr"
+		-DCMAKE_BUILD_TYPE=Release
+	)
 
-    if use wxwidgets; then
-        mycmakeargs+=( -DUSEWX=yes )
-    else
-        mycmakeargs+=( -DUSEWX=no )
-    fi
+	if use wxwidgets; then
+		mycmakeargs+=( -DUSEWX=yes )
+	else
+		mycmakeargs+=( -DUSEWX=no )
+	fi
 
-    if use python; then
-        mycmakeargs+=( -DPYTHON=yes )
-    else
-        mycmakeargs+=( -DPYTHON=no )
-    fi
+	if use python; then
+		mycmakeargs+=( -DPYTHON=yes )
+	else
+		mycmakeargs+=( -DPYTHON=no )
+	fi
 
-    cmake-utils_src_configure
+	cmake-utils_src_configure
 }
 
 src_install(){
@@ -96,9 +96,9 @@ src_install(){
 }
 
 pkg_postinst() {
-    xdg_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
-    xdg_icon_cache_update
+	xdg_icon_cache_update
 }
