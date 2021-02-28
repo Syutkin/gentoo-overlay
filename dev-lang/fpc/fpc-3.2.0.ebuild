@@ -145,8 +145,8 @@ src_install() {
 	rm -r "${ED}"/usr/lib/fpc/lexyacc || die
 }
 
-pkg_postinst() {
-	if [[ -z ${REPLACING_VERSIONS} ]] && use ide; then
-		einfo "To read the documentation in the fpc IDE, enable the doc USE flag"
-	fi
-}
+#pkg_postinst() {
+#	if [[ -z ${REPLACING_VERSIONS} ]] && use ide; then
+#		einfo "To read the documentation in the fpc IDE, enable the doc USE flag"
+#	fi
+#}
