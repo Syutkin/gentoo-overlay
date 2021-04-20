@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -20,30 +20,29 @@ if [[ "${PV}" == "9999" ]] ; then
 	EGIT_REPO_URI="https://github.com/elfmz/far2l"
 	EGIT_BRANCH="master"
 else
-	MY_PV="${PV:4:5}-${PV:15:2}sep${PV:11:2}"
+	MY_PV="${PV:4:4}-${PV:8:2}-${PV:10:8}"
 	MY_P="${PN}-${MY_PV}"
 	S="${WORKDIR}/${MY_P}"
-	SRC_URI="https://github.com/elfmz/far2l/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/elfmz/far2l/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="GPL-2.0"
-KEYWORDS="~amd64 ~x86"
+LICENSE="GPL-2"
 SLOT="0"
 IUSE="+ssl libressl sftp samba nfs webdav +archive +wxwidgets python +static-libs"
 
 BDEPEND=">=dev-util/cmake-3.2.2
-        sys-devel/m4"
+	sys-devel/m4"
 
-DEPEND="sys-apps/gawk
-        dev-libs/xerces-c
-        dev-libs/spdlog
-        app-i18n/uchardet
-        wxwidgets? ( x11-libs/wxGTK:${WX_GTK_VER} )
-        ssl? (
-                !libressl? ( dev-libs/openssl )
-                libressl? ( dev-libs/libressl )
-        )
+RDEPEND="sys-apps/gawk
+	dev-libs/xerces-c
+	dev-libs/spdlog
+	app-i18n/uchardet
+	wxwidgets? ( x11-libs/wxGTK:${WX_GTK_VER} )
+	ssl? (
+		!libressl? ( dev-libs/openssl )
+		libressl? ( dev-libs/libressl )
+	)
 	sftp? ( net-libs/libssh[sftp] )
 	samba? ( net-fs/samba )
 	nfs? ( net-fs/libnfs )
@@ -53,7 +52,7 @@ DEPEND="sys-apps/gawk
 		app-arch/libarchive )
 	python? ( $(python_gen_any_dep 'dev-python/virtualenv[${PYTHON_USEDEP}]') )"
 
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}"
 
 pkg_setup() {
 	if use wxwidgets; then
@@ -62,8 +61,8 @@ pkg_setup() {
 }
 
 src_prepare() {
-	sed -e "s:execute_process(COMMAND ln -s \../../bin/far2l \${CMAKE_INSTALL_PREFIX}/lib/far2l/far2l_askpass)::" -i "${S}"/CMakeLists.txt
-	sed -e "s:execute_process(COMMAND ln -s \../../bin/far2l \${CMAKE_INSTALL_PREFIX}/lib/far2l/far2l_sudoapp)::" -i "${S}"/CMakeLists.txt
+	sed -e "s:execute_process(COMMAND ln -sf \../../bin/far2l \${CMAKE_INSTALL_PREFIX}/lib/far2l/far2l_askpass)::" -i "${S}"/CMakeLists.txt
+	sed -e "s:execute_process(COMMAND ln -sf \../../bin/far2l \${CMAKE_INSTALL_PREFIX}/lib/far2l/far2l_sudoapp)::" -i "${S}"/CMakeLists.txt
 	sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/objinfo/plug/objinfo.far-plug-mb)::" -i "${S}"/CMakeLists.txt
 	sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/farftp/plug/farftp.far-plug-mb && echo Removed existing farftp plugin)::" -i "${S}"/CMakeLists.txt
 	sed -e "s:execute_process(COMMAND rm -f \${CMAKE_INSTALL_PREFIX}/lib/far2l/Plugins/python/plug/python.far-plug-wide && echo Removed existing python plugin)::" -i "${S}"/CMakeLists.txt
@@ -83,8 +82,8 @@ src_configure() {
 src_install(){
 	cmake_src_install
 	einstalldocs
-	dosym "/usr/bin/far2l" "/usr/lib/far2l/far2l_askpass"
-	dosym "/usr/bin/far2l" "/usr/lib/far2l/far2l_sudoapp"
+	dosym "../../bin/far2l" "usr/lib/far2l/far2l_askpass"
+	dosym "../../bin/far2l" "usr/lib/far2l/far2l_sudoapp"
 }
 
 pkg_postinst() {
