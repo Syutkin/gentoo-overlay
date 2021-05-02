@@ -18,12 +18,13 @@ SRC_URI="
 LICENSE="GPL-2 LGPL-2.1-with-linking-exception"
 SLOT="0" # Note: Slotting Lazarus needs slotting fpc, see DEPEND.
 KEYWORDS="~amd64 ~x86"
-IUSE="minimal python +gdb"
+IUSE="qt5 minimal python gdb"
 RESTRICT="mirror"
 
 DEPEND=">=dev-lang/fpc-${FPCVER}[source]
 	net-misc/rsync
-	x11-libs/gtk+:2
+	!qt5? ( x11-libs/gtk+:2 )
+	qt5? ( dev-qt/qtpascal:5 )
 	>=sys-devel/binutils-2.19.1-r1:="
 RDEPEND="${DEPEND}
 	gdb? ( sys-devel/gdb )"
@@ -43,17 +44,18 @@ src_prepare() {
 		sed -e 's/^FPBIN=/#&/' /usr/lib/fpc/${FPCVER}/samplecfg |
 			sh -s /usr/lib/fpc/${FPCVER} "${PPC_CONFIG_PATH}" || die
 	fi
-	sed -i \
-		-e "s;SecondaryConfigPath:='/etc/lazarus';SecondaryConfigPath:=ExpandFileNameUTF8('~/.lazarus');g" \
-		-e "s;PrimaryConfigPath:=ExpandFileNameUTF8('~/.lazarus');PrimaryConfigPath:='/etc/lazarus';g" \
-		ide/include/unix/lazbaseconf.inc \
-		|| die
 }
 
 src_compile() {
-	LCL_PLATFORM=gtk2 emake \
-		$(usex minimal "" "bigide") \
-		-j1
+	if use qt5; then
+		LCL_PLATFORM=qt5 emake \
+                        $(usex minimal "" "bigide") \
+                        -j1
+	else
+		LCL_PLATFORM=gtk2 emake \
+			$(usex minimal "" "bigide") \
+			-j1
+	fi
 	if use python; then
 		addpredict ide/exttools.pas
 		./lazbuild -B --lazarusdir="." --pcp="../lazarus-package-config" --build-ide= \
