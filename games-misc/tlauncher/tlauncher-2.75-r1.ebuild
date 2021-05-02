@@ -3,14 +3,14 @@
 
 EAPI=7
 
-inherit desktop eutils xdg-utils
+inherit desktop eutils xdg
 
 DESCRIPTION="An advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
 
 SRC_URI="
 		https://tlauncher.org/jar -> ${P}.zip
-		https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
+		https://www.minecraft.net/etc.clientlibs/minecraft/clientlibs/main/resources/apple-icon-180x180.png -> ${P}.png"
 
 LICENSE="all-rights-reserved"
 RESTRICT="mirror"
@@ -22,10 +22,6 @@ RDEPEND="${DEPEND}
 	|| ( virtual/jre virtual/jdk )"
 
 S="${WORKDIR}"
-
-#src_unpack() {
-#	unpack ${P}.zip
-#}
 
 src_install() {
 	local inst_dir="/opt/${P}"
@@ -58,12 +54,4 @@ pkg_postinst() {
 	ewarn
 	ewarn "Just run 'gpasswd -a <USER> games' and 'gpasswd -a <USER> video', then have <USER> re-login."
 	ewarn
-
-	xdg_desktop_database_update
-	xdg_icon_cache_update
-}
-
-pkg_postrm() {
-	xdg_desktop_database_update
-	xdg_icon_cache_update
 }
