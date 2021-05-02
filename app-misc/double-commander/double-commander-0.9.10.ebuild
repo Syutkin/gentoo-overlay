@@ -3,7 +3,7 @@
 
 EAPI=7
 RESTRICT="mirror" # do not access gentoo mirror until it actually is there
-inherit eutils desktop xdg-utils
+inherit eutils desktop xdg
 
 ABBREV="doublecmd"
 DESCRIPTION="Cross Platform file manager."
@@ -26,14 +26,12 @@ RDEPEND="
 	sys-libs/ncurses
 	x11-libs/libX11
 	gtk? ( x11-libs/gtk+:2 )
-	qt5? ( >=dev-qt/qtcore-5.6
-		>=dev-qt/qtpascal-2.6 )
-"
+	qt5? ( dev-qt/qtpascal:5 )"
 
 S="${WORKDIR}/${ABBREV}-${PV}"
 
 src_prepare(){
-	 eapply_user
+	eapply_user
 
 	use gtk && export lcl="gtk2"
 	use qt5 && export lcl="qt5"
@@ -41,10 +39,10 @@ src_prepare(){
 
 	export lazpath="/usr/share/lazarus"
 
-	if use qt5 ; then
-		cp /usr/lib/qt4/libQt5Pas.so plugins/wlx/WlxMplayer/src/
-		cp /usr/lib/qt4/libQt5Pas.so src/
-	fi
+#	if use qt5 ; then
+#		cp /usr/lib/qt4/libQt5Pas.so plugins/wlx/WlxMplayer/src/
+#		cp /usr/lib/qt4/libQt5Pas.so src/
+#	fi
 
 	find ./ -type f -name "build.sh" -exec sed -i 's#$lazbuild #$lazbuild --lazarusdir=/usr/share/lazarus #g' {} \;
 }
@@ -66,12 +64,4 @@ src_install(){
 	dosym ../share/${ABBREV}/${ABBREV} /usr/bin/${ABBREV}
 
 	make_desktop_entry ${ABBREV} "Double Commander" "${ABBREV}" "Utility;" || die "Failed making desktop entry!"
-}
-
-pkg_postinst() {
-	xdg_desktop_database_update
-}
-
-pkg_postrm() {
-	xdg_desktop_database_update
 }
