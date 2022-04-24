@@ -13,7 +13,7 @@ KEYWORDS="~amd64"
 
 SLOT="0"
 LICENSE="MIT"
-DEPEND=">=net-misc/streamlink-2.0.0
+DEPEND=">=net-misc/streamlink-2.4.0
 	dev-libs/nss
 	gnome-base/gconf
 	media-libs/alsa-lib

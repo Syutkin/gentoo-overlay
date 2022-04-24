@@ -26,7 +26,7 @@ RDEPEND="
 	sys-libs/ncurses
 	x11-libs/libX11
 	gtk? ( x11-libs/gtk+:2 )
-	qt5? ( dev-qt/qtpascal:5 )"
+	qt5? ( dev-libs/qt5pas:5 )"
 
 S="${WORKDIR}/${ABBREV}-${PV}"
 
