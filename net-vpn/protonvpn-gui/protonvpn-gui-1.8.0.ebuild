@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 PYTHON_COMPAT=( python3_{8..10} )
 
@@ -21,6 +21,7 @@ RESTRICT="primaryuri"
 
 RDEPEND="
 	x11-libs/gtk+:3
+	net-libs/webkit-gtk
 	dev-python/pygobject[${PYTHON_USEDEP}]
 	dev-python/psutil[${PYTHON_USEDEP}]
 	dev-python/pycairo[${PYTHON_USEDEP}]
