@@ -1,9 +1,9 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 RESTRICT="mirror" # do not access gentoo mirror until it actually is there
-inherit eutils desktop xdg
+inherit desktop xdg
 
 ABBREV="doublecmd"
 DESCRIPTION="Cross Platform file manager."
@@ -18,7 +18,7 @@ IUSE="gtk qt5"
 REQUIRED_USE=" ^^ ( gtk qt5 )"
 RESTRICT="strip"
 
-DEPEND=">=dev-lang/lazarus-1.8"
+DEPEND=">=dev-lang/lazarus-2.0.0"
 RDEPEND="
 	${DEPEND}
 	sys-apps/dbus
@@ -26,7 +26,7 @@ RDEPEND="
 	sys-libs/ncurses
 	x11-libs/libX11
 	gtk? ( x11-libs/gtk+:2 )
-	qt5? ( dev-libs/qt5pas:5 )"
+	qt5? ( dev-libs/libqt5pas )"
 
 S="${WORKDIR}/${ABBREV}-${PV}"
 

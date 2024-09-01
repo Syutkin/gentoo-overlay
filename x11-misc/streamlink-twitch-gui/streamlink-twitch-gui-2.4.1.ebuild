@@ -1,9 +1,9 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit eutils
+#inherit eutils
 
 DESCRIPTION="A multi platform Twitch.tv browser for Streamlink"
 HOMEPAGE="https://streamlink.github.io/streamlink-twitch-gui/"
@@ -13,7 +13,7 @@ KEYWORDS="~amd64"
 
 SLOT="0"
 LICENSE="MIT"
-DEPEND=">=net-misc/streamlink-2.4.0
+DEPEND=">=net-misc/streamlink-6.0.0
 	dev-libs/nss
 	gnome-base/gconf
 	media-libs/alsa-lib
