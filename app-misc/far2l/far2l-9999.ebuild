@@ -24,7 +24,7 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="+archive +chardet +colorer nfs rar samba sftp +ssl webdav wxwidgets X"
+IUSE="+archive +chardet +colorer nfs samba sftp +ssl webdav wxwidgets X"
 RESTRICT="mirror"
 
 RDEPEND="
@@ -40,7 +40,6 @@ RDEPEND="
 	chardet? ( app-i18n/uchardet )
 	colorer? ( dev-libs/libxml2 )
 	nfs? ( net-fs/libnfs )
-	rar? ( app-arch/unrar )
 	samba? ( net-fs/samba )
 	sftp? ( net-libs/libssh[sftp] )
 	ssl? ( dev-libs/openssl )

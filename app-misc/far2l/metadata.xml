@@ -13,7 +13,6 @@
 		<flag name="chardet">Auto charset detection</flag>
 		<flag name="colorer">Colorer plugin support</flag>
 		<flag name="nfs">NFS support in NetRocks</flag>
-		<flag name="rar">RAR archives support in multiarc</flag>
 		<flag name="samba">SMB support in NetRocks</flag>
 		<flag name="sftp">SFTP support in NetRocks</flag>
 		<flag name="ssl">FTPS support in NetRocks</flag>
