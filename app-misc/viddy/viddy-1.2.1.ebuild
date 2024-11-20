@@ -365,8 +365,8 @@ CRATES="
 inherit cargo
 
 DESCRIPTION="A modern watch command"
-HOMEPAGE=""
-SRC_URI="
+HOMEPAGE="https://github.com/sachaos/viddy"
+SRC_URI="https://github.com/sachaos/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.gh.tar.gz
 	${CARGO_CRATE_URIS}
 "
 
@@ -378,3 +378,8 @@ LICENSE+="
 "
 SLOT="0"
 KEYWORDS="~amd64"
+
+src_install() {
+	cargo_src_install
+	dodoc README.md
+}
