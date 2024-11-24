@@ -23,12 +23,14 @@ DEPEND=">=net-misc/streamlink-6.0.0
 	"
 RDEPEND="${DEPEND}"
 
+QA_PREBUILT="
+/usr/share/streamlink-twitch-gui-bin/streamlink-twitch-gui-bin
+/usr/share/streamlink-twitch-gui-bin/lib/*.so"
+
 src_unpack() {
 	default
 	mv "${WORKDIR}/${MY_PN}" "${WORKDIR}/${PN}" || die "Unable to rename source dir!"
 }
-
-#S=${WORKDIR}/${PN}
 
 src_prepare() {
 	default
