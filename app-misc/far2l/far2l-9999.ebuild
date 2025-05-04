@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..13} )
+PYTHON_COMPAT=( python3_{11..13} )
 
 WX_GTK_VER="3.2-gtk3"
 
@@ -36,7 +36,6 @@ RDEPEND="
 		x11-libs/libXi
 	)
 	archive? (
-		dev-libs/libpcre2
 		app-arch/libarchive
 	)
 	chardet? ( app-i18n/uchardet )
@@ -72,10 +71,10 @@ src_configure() {
 		-DUSEWX="$(usex wxwidgets)"
 		-DUSEUCD=$"$(usex chardet)"
 		-DCOLORER="$(usex colorer)"
+#		FIXME: add python plugins support
 #		-DPYTHON="$(usex python)"
 		-DBUILD_SHARED_LIBS=OFF
 	)
-
 	cmake_src_configure
 }
 
