@@ -13,10 +13,11 @@ S=${WORKDIR}
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+jack"
+IUSE="alsa jack"
 RESTRICT="bindist mirror"
 
 DEPEND="
+	alsa? ( media-libs/alsa-lib )
 	jack? ( virtual/jack )
 "
 

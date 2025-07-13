@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>syutkin@gmail.com</email>
+		<name>Andrey Syutkin</name>
+	</maintainer>
+	<longdescription>
+		The amp and effects modeling software for electric guitar and bass. 
+		The Tonelib-GFX features accurate recreations of vintage and modern amplifiers, 
+		speaker cabinets, microphones, and effects. The Tonelib GFX also supports 3rd 
+		party impulse responses (IRs), offering even greater tonal flexibility.
+	</longdescription>
+</pkgmetadata>
