@@ -32,6 +32,7 @@ src_unpack() {
 
 src_install() {
 	sed -i -e 's/AudioEditing/X-AudioEditing/' usr/share/applications/ToneLib-GFX.desktop || die
+	dodoc usr/share/doc/tonelib-gfx/copyright
 	rm -rf usr/share/doc || die
 	cp -r usr "${D}/" || die
 }
