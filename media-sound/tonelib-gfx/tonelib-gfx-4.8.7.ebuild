@@ -19,6 +19,9 @@ RESTRICT="bindist mirror"
 DEPEND="
 	alsa? ( media-libs/alsa-lib )
 	jack? ( virtual/jack )
+	media-libs/freetype
+	media-libs/mesa
+	x11-libs/libXinerama	
 "
 
 QA_PREBUILT="
